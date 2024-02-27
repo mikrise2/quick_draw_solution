@@ -24,8 +24,8 @@ class Game {
     fun processCommand(code: Int) {
         when (gameState) {
             GameState.MENU -> processMenu(code)
-            GameState.WAIT -> processWait(code)
-            GameState.FIRE -> processFire(code)
+            GameState.WAIT -> cancelTasksAndSetGameState(code, GameState.LOSE_TOO_FAST)
+            GameState.FIRE -> cancelTasksAndSetGameState(code, GameState.WIN)
             GameState.LOSE_TOO_FAST -> afterGameProcess(code)
             GameState.LOSE_TOO_SLOW -> afterGameProcess(code)
             GameState.WIN -> afterGameProcess(code)
@@ -39,17 +39,10 @@ class Game {
         }
     }
 
-    private fun processWait(code: Int) {
+    private fun cancelTasksAndSetGameState(code: Int, newState: GameState) {
         if (code == Resources.SPACE_CODE) {
             cancelTasks()
-            gameState = GameState.LOSE_TOO_FAST
-        }
-    }
-
-    private fun processFire(code: Int) {
-        if (code == Resources.SPACE_CODE) {
-            cancelTasks()
-            gameState = GameState.WIN
+            gameState = newState
         }
     }
 
