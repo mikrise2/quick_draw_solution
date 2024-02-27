@@ -2,7 +2,7 @@ package org.example.game
 
 import org.example.Resources
 
-enum class GameState(val text: String)  {
+enum class GameState(val text: String) {
     MENU(Resources.MENU),
     WAIT(Resources.WAIT),
     FIRE(Resources.FIRE),

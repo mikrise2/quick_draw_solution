@@ -21,7 +21,6 @@ class Game {
 
     var batch by mutableStateOf(gameState.text)
 
-
     fun processCommand(code: Int) {
         when (gameState) {
             GameState.MENU -> processMenu(code)
@@ -46,7 +45,6 @@ class Game {
             gameState = GameState.LOSE_TOO_FAST
         }
     }
-
 
     private fun processFire(code: Int) {
         if (code == Resources.SPACE_CODE) {
@@ -89,5 +87,4 @@ class Game {
     private fun cancelTasks() {
         tasks.forEach { it.cancel() }
     }
-
 }
